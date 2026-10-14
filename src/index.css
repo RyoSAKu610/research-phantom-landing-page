@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+@theme {
+  /* ————— Ink & gold bookbinding palette ————— */
+  --color-ink-950: #0e0a07;
+  --color-ink-900: #15100c;
+  --color-ink-850: #1a1410;
+  --color-ink-800: #211a13;
+  --color-ink-700: #2b2118;
+  --color-ink-600: #392b1e;
+  --color-ink-500: #4d3a28;
+
+  --color-gold-200: #f5e5bd;
+  --color-gold-300: #ecd8a4;
+  --color-gold-400: #e3c583;
+  --color-gold-500: #d3a95c;
+  --color-gold-600: #b58a45;
+  --color-gold-700: #8f6a36;
+
+  --color-cream-50: #faf5eb;
+  --color-cream-100: #f2e9d6;
+  --color-cream-200: #e4d7ba;
+
+  --color-sand-300: #c9b78e;
+  --color-sand-400: #ab9878;
+  --color-sand-500: #8d7c62;
+
+  --font-display: Georgia, "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --font-sans: Inter, "Hiragino Kaku Gothic ProN", "Yu Gothic", ui-sans-serif, system-ui, sans-serif;
+  --font-jp: "Yu Mincho", "Hiragino Mincho ProN", Georgia, serif;
+
+  /* ————— Motion ————— */
+  --animate-marquee: marquee 46s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 11s ease-in-out infinite;
+  --animate-drift-a: drift-a 28s ease-in-out infinite alternate;
+  --animate-drift-b: drift-b 34s ease-in-out infinite alternate;
+  --animate-breathe: breathe 6s ease-in-out infinite;
+  --animate-spin-slow: spin 16s linear infinite;
+  --animate-shimmer: shimmer 2.6s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes drift-a {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(6vw, -5vh) scale(1.15); }
+  }
+  @keyframes drift-b {
+    0% { transform: translate(0, 0) scale(1.1); }
+    100% { transform: translate(-7vw, 6vh) scale(0.95); }
+  }
+  @keyframes breathe {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.06); }
+  }
+  @keyframes shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+}
+
+/* ————————————————— Base ————————————————— */
+
+html {
+  scroll-behavior: smooth;
+  background: #15100c;
+  overflow-x: clip;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--color-ink-900);
+  color: var(--color-cream-100);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(227, 197, 131, 0.28);
+  color: #faf5eb;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #15100c;
+}
+::-webkit-scrollbar-thumb {
+  background: #392b1e;
+  border-radius: 8px;
+  border: 2px solid #15100c;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4d3a28;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold-400);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ————————————————— Custom utilities ————————————————— */
+
+.gold-text {
+  background: linear-gradient(115deg, #f5e5bd 0%, #e3c583 38%, #b58a45 72%, #ecd8a4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.panel {
+  border: 1px solid rgba(227, 197, 131, 0.14);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.panel-hover {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
+}
+.panel-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(227, 197, 131, 0.35);
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(227, 197, 131, 0.08), 0 0 44px -18px rgba(227, 197, 131, 0.22);
+}
+
+.btn-gold {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f0d9a6 0%, #e3c583 45%, #c99b52 100%);
+  color: #1a1410;
+  box-shadow: 0 10px 32px -10px rgba(227, 197, 131, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, filter 0.35s ease;
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 16px 42px -10px rgba(227, 197, 131, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.btn-gold:active {
+  transform: translateY(0px) scale(0.98);
+}
+.btn-gold::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.5) 50%, transparent 65%);
+  transform: translateX(-120%);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+}
+.btn-gold:hover::after {
+  transform: translateX(120%);
+}
+
+.btn-ghost {
+  border: 1px solid rgba(227, 197, 131, 0.22);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  transition: border-color 0.35s ease, background 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-ghost:hover {
+  border-color: rgba(227, 197, 131, 0.5);
+  background: rgba(227, 197, 131, 0.08);
+  transform: translateY(-2px);
+}
+.btn-ghost:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+}
+
+.mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.tab-panel-enter {
+  animation: tabEnter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes tabEnter {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.scene-shift {
+  animation: sceneShift 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes sceneShift {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,1 @@
+{"provider": "local-qwen3-tts-reference", "model": "Qwen3-TTS-12Hz-1.7B-Base-6bit", "voice": "user-reference", "sample_reference": true, "script_sha256": "c3332d6aa75bfdbed48bdfefeacd98b9d0fa86537a69a2273c35410d3698c1c9", "settings": {"speed": 1, "pitch": 0, "expression": 50, "clarity": 50}}

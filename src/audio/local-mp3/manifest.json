@@ -1,0 +1,174 @@
+{
+  "provider": "local-qwen3-tts",
+  "script_sha256": "c3332d6aa75bfdbed48bdfefeacd98b9d0fa86537a69a2273c35410d3698c1c9",
+  "tracks": [
+    {
+      "file": "phantom/01-guide.mp3",
+      "sha256": "282e85bbc607e6f9435740c99ef6ecfbe835990e62f39c2741521d1bedbc2a9b",
+      "bytes": 429740,
+      "duration_seconds": 26.8
+    },
+    {
+      "file": "phantom/02-guide.mp3",
+      "sha256": "56aeac2f56bca3de0c3b6ab6bfecaa3b4b50a2dc8831d661727e8b1322d966dd",
+      "bytes": 394028,
+      "duration_seconds": 24.56
+    },
+    {
+      "file": "phantom/03-guide.mp3",
+      "sha256": "e418a6927147fbaab3c2f7cdc905c00cd2e2aa53935cf257ed2524c21294e3d0",
+      "bytes": 377132,
+      "duration_seconds": 23.52
+    },
+    {
+      "file": "phantom/04-guide.mp3",
+      "sha256": "d21e2a3ccd885710bf7262a46f1c22a15e5663abd32831651abab43fcfdc5fe5",
+      "bytes": 344108,
+      "duration_seconds": 21.44
+    },
+    {
+      "file": "phantom/05-guide.mp3",
+      "sha256": "18d1a94d39b52743043f2fc4dc36948a3a989d8f333528c086b58359a1046816",
+      "bytes": 347948,
+      "duration_seconds": 21.68
+    },
+    {
+      "file": "phantom/06-guide.mp3",
+      "sha256": "639be6dfd7a91201dcc83371025c296d44666aaf13ec5a48ac63f13ceff5a120",
+      "bytes": 308012,
+      "duration_seconds": 19.2
+    },
+    {
+      "file": "phantom/07-guide.mp3",
+      "sha256": "284ccb95cf82990b77fd6091101b4f6ba97a0a67109c05bdfe1ef4a75d58095a",
+      "bytes": 308012,
+      "duration_seconds": 19.2
+    },
+    {
+      "file": "kitsune/01-guide.mp3",
+      "sha256": "af895ac3ecbf9e51496832021991a2da1dfb8fcef3af598bb3bcd9c2184954ae",
+      "bytes": 457772,
+      "duration_seconds": 28.56
+    },
+    {
+      "file": "kitsune/02-guide.mp3",
+      "sha256": "08917a2869e2e27141c8cc257d2f75615be72739dbcf7dd30cf8c835f1e2f09e",
+      "bytes": 386348,
+      "duration_seconds": 24.08
+    },
+    {
+      "file": "kitsune/03-guide.mp3",
+      "sha256": "11b299f27862584991651d6c635f5b79b8d797511fef4185a44501ac01ddca70",
+      "bytes": 377132,
+      "duration_seconds": 23.52
+    },
+    {
+      "file": "kitsune/04-guide.mp3",
+      "sha256": "1db1238704fe87168b48976588fe793cf18e19466d6dff14703eb461990514f1",
+      "bytes": 386348,
+      "duration_seconds": 24.08
+    },
+    {
+      "file": "kitsune/05-guide.mp3",
+      "sha256": "2a57cf9471c596112478ee26df3a2959b62c20376b2a97437c7b1905a47d27f4",
+      "bytes": 384812,
+      "duration_seconds": 24.0
+    },
+    {
+      "file": "kitsune/06-guide.mp3",
+      "sha256": "e375ba375534875102dc687d29241bc0a26a99bb180a535e5b736a3251454006",
+      "bytes": 370988,
+      "duration_seconds": 23.12
+    },
+    {
+      "file": "kitsune/07-guide.mp3",
+      "sha256": "1fe2ecfc451cd1f7bc0127acd81b303912ab10eadfd6bb8c3cb6ddebbcdcfe8c",
+      "bytes": 333740,
+      "duration_seconds": 20.8
+    },
+    {
+      "file": "owl/01-guide.mp3",
+      "sha256": "a82ae60d38aea7167e574ce94a86e1cdc6af8f378e29cc1e849f6d2472030231",
+      "bytes": 413228,
+      "duration_seconds": 25.76
+    },
+    {
+      "file": "owl/02-guide.mp3",
+      "sha256": "2c63735f266aa130f8d31de75d60507d2f57577e0c3444ab3b9bcb67b75e8789",
+      "bytes": 392492,
+      "duration_seconds": 24.48
+    },
+    {
+      "file": "owl/03-guide.mp3",
+      "sha256": "72b58fb1e6497935bd266364ff79bdcdfa40c1499b3b5138cbbbd2b322523a03",
+      "bytes": 537260,
+      "duration_seconds": 33.52
+    },
+    {
+      "file": "owl/04-guide.mp3",
+      "sha256": "d9a1bed868eb2022eaa76206f160ff1cc240bdfa3b7482d59214a82dd64beace",
+      "bytes": 384812,
+      "duration_seconds": 24.0
+    },
+    {
+      "file": "owl/05-guide.mp3",
+      "sha256": "c12e4f42e5d8e533db7f7a7052b19d32b2bb36876bda1da556a53851069e9ac3",
+      "bytes": 322220,
+      "duration_seconds": 20.08
+    },
+    {
+      "file": "owl/06-guide.mp3",
+      "sha256": "2b3463432b033fb250f197f95424c6aa9ecba30bcb91077b5cbae3a0ddfe846b",
+      "bytes": 355628,
+      "duration_seconds": 22.16
+    },
+    {
+      "file": "owl/07-guide.mp3",
+      "sha256": "b4bb557785328c1f1793064a67322155a5d6c2b2463c8237acf13ea5e6245212",
+      "bytes": 418220,
+      "duration_seconds": 26.08
+    },
+    {
+      "file": "meiji/01-guide.mp3",
+      "sha256": "da8dff377a5cff7c3215a8d3e68c3c5fe6b2c39102931b90bb9b6fba278abeca",
+      "bytes": 442412,
+      "duration_seconds": 27.6
+    },
+    {
+      "file": "meiji/02-guide.mp3",
+      "sha256": "429b17bf18c226351afb629be44577a6c1d90e3128337e74ef28fe8a9cf6ece5",
+      "bytes": 440108,
+      "duration_seconds": 27.44
+    },
+    {
+      "file": "meiji/03-guide.mp3",
+      "sha256": "f2bac966290b81c8d318e4587c214e9f1452a5b2435fe0f6ca31f8b7ad6a3758",
+      "bytes": 391340,
+      "duration_seconds": 24.4
+    },
+    {
+      "file": "meiji/04-guide.mp3",
+      "sha256": "b2a2754a58ca13b832fa1ceb39d0824670e2d0c88bcebe51b3399f7247550bf3",
+      "bytes": 406700,
+      "duration_seconds": 25.36
+    },
+    {
+      "file": "meiji/05-guide.mp3",
+      "sha256": "83e64ebd6d64db6eaaa34eb038be10f841cb58548971e7a31b12c3a606ab91e2",
+      "bytes": 372140,
+      "duration_seconds": 23.2
+    },
+    {
+      "file": "meiji/06-guide.mp3",
+      "sha256": "0b8d3ae5f9b1a15f9c35790ad4dc18ce9ec902d651d193aaf994d23cff26c58a",
+      "bytes": 428588,
+      "duration_seconds": 26.72
+    },
+    {
+      "file": "meiji/07-guide.mp3",
+      "sha256": "63b423ee7bd534fac04b22745d28761a28f045bb98159df932719ce7d1218af5",
+      "bytes": 386348,
+      "duration_seconds": 24.08
+    }
+  ]
+}

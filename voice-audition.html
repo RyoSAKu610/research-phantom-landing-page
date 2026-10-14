@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>音声試聴ノート — 28本の確認</title>
+<style>
+  :root { color-scheme: light; background: #f4f1e9; color: #242923; font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; line-height: 1.8; }
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  main { max-width: 980px; margin: auto; padding: 32px 20px 80px; }
+  h1, h2 { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; line-height: 1.4; }
+  h1 { font-size: clamp(28px, 5vw, 42px); margin: 8px 0 16px; }
+  h2 { margin: 40px 0 12px; }
+  h3 { margin: 0 0 12px; font-size: 18px; }
+  p { margin: 8px 0; }
+  .eyebrow { font-size: 13px; letter-spacing: .16em; color: #435b4d; }
+  .instructions { border-left: 4px solid #435b4d; padding: 4px 18px; }
+  .toolbar { background: #e5e9df; padding: 16px; margin: 24px 0; border: 1px solid #b8c4b4; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+  button, select, textarea { font: inherit; }
+  button { cursor: pointer; background: #314c3e; color: white; border: 1px solid #314c3e; padding: 9px 16px; border-radius: 4px; }
+  button:disabled { opacity: .6; cursor: default; }
+  :focus-visible { outline: 3px solid #a04a16; outline-offset: 4px; }
+  nav { display: flex; flex-wrap: wrap; gap: 20px; }
+  a { color: #314c3e; text-underline-offset: 4px; }
+  article { background: #fffef9; border: 1px solid #c9cbbf; padding: 22px; margin: 14px 0; scroll-margin-top: 20px; }
+  article.playing { border-left: 5px solid #314c3e; }
+  audio { display: block; width: 100%; margin: 12px 0 18px; }
+  .scripts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .script-label { font-weight: bold; font-size: 14px; color: #435b4d; }
+  .script { font-size: 15px; overflow-wrap: anywhere; }
+  .difference { color: #88420e; font-weight: bold; }
+  .review { border-top: 1px solid #dedfd5; padding-top: 16px; margin-top: 18px; }
+  label { display: block; font-weight: bold; margin-bottom: 6px; }
+  select { background: white; color: #242923; padding: 8px; border: 1px solid #818b7e; min-width: 150px; margin-bottom: 12px; }
+  textarea { display: block; width: 100%; min-height: 90px; padding: 10px; border: 1px solid #818b7e; background: white; color: #242923; resize: vertical; }
+  .small { font-size: 14px; }
+  #storage-status, #play-status { font-size: 14px; }
+  @media (max-width: 650px) { .scripts { grid-template-columns: 1fr; gap: 10px; } article { padding: 16px; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">LOCAL VOICE / LISTENING QA</p>
+    <h1>音声試聴ノート</h1>
+    <p>4人のガイド × 7場面、全28本。ローカルの Qwen3-TTS で生成したMP3です。<strong>人による聴覚QAはまだ完了していません。</strong></p>
+    <div class="instructions">
+      <p>① 音量を控えめにして、各音声の再生ボタンを押してください。② 原稿と照らし合わせて最後まで聴き、③「OK」または「要修正」とメモを残してください。</p>
+      <p>確認する点：<strong>専門用語・単語の読み、数字（12・3・5）、語尾の欠け、間の長さ、イントネーションと自然さ</strong>。気になる箇所は「0:12 数字の読み」のように時刻も記録すると便利です。</p>
+      <p class="small">「生成時の読み上げ原稿」は生成に渡した文章で、音声の文字起こしではありません。実際に何と聞こえるかは、ご自身の耳で確認してください。場面3などには読みやすさのための言い換えがあります。</p>
+    </div>
+  </header>
+  <div class="toolbar">
+    <p id="counts" role="status" aria-live="polite"></p>
+    <p id="storage-status" role="status" aria-live="polite"></p>
+    <div class="actions">
+      <button id="next" type="button">最初の音声を再生</button>
+      <button id="stop" type="button">すべて一時停止</button>
+      <button id="download" type="button">確認結果をJSONで保存</button>
+    </div>
+    <p id="play-status" role="status" aria-live="polite">自動再生・連続再生はしません。「次の音声」は最後に再生した音声の次を、クリックしたときだけ再生します。</p>
+    <p class="small">判定とメモはこのブラウザに保存します。file:// ではブラウザによって保存できない場合があります。終了前にJSONも保存してください。ページから外部への送信は行いません。</p>
+  </div>
+  <nav aria-label="ガイド別の音声へ移動">
+    <a href="#phantom">仮面の学者</a><a href="#kitsune">狐の司書</a><a href="#owl">フクロウ分析者</a><a href="#meiji">明治の研究者</a>
+  </nav>
+  <noscript><p>このページにはJavaScriptが必要です。ブラウザの設定で有効にしてください。</p></noscript>
+  <div id="groups"></div>
+</main>
+<script>
+'use strict';
+// Only public audio locations and the reviewed generation scripts are baked in.
+const intended = [
+  '場面1、問い。この論文の目的は、何でしょうか。パーシステント・エントロピー。データの形を要約できますが、多くの構造を失います。著者は、ノイズへの安定性を保ちながら、より多くの形状情報を残す変換を提案しました。学習データは不要で、この提案の中心は数学的な安定性です。',
+  '場面2、入力。何をデータとして入れるのでしょうか。未知の形状からサンプリングされた、ノイズを含む点の集まりを入力します。それぞれは、特徴が現れたり消えたりするスケールを記録した、パーシステンス・ダイアグラムへ変換されます。形状の変化を記録する、計測器のような入力です。',
+  '場面3、処理。変換はどう進むのでしょうか。ダイアグラムを、関数で表す空間へ持ち上げ、持続性で重み付けし、再びエントロピー化します。結果はコンパクトで、情報量が多く、理論上も安定したベクトルになります。各段階が微分可能である点も重要です。',
+  '場面4、注意。どこで誤解しやすいのでしょうか。複雑に重なったダイアグラムは、関数空間で衝突する可能性があります。著者は衝突の境界を示し、この変換を信頼すべきでない条件も明記しました。強い主張だけでなく、適用限界も同じ重さで確認します。',
+  '場面5。観察と測定です。何を測定したのでしょうか。12種類の形状、3つのノイズ条件、5つの比較手法を使い、ノイズの増加に対して安定性がどう変わるかを追跡しました。ここでは解釈を急がず、測定された結果だけを見ます。',
+  '場面6、整理。数字は何を意味するのでしょうか。きれいなデータでは深層学習手法と同等以上で、ノイズが増えた場合は、より緩やかに性能が低下しました。理論上の安定性が実験でも確認されています。結果と主張の距離を、ここで慎重に整理します。',
+  '場面7、結論。結局、いつ使うべきなのでしょうか。形状データを軽く、かつ安定して表現したい場面に適しています。同時に、より複雑な表現へ切り替えるべき条件も明確です。強く、控えめで、実際に使える結論です。'
+];
+const guides = [
+  { id: 'phantom', name: '仮面の学者', speaker: 'Aiden' },
+  { id: 'kitsune', name: '狐の司書', speaker: 'Ono_Anna' },
+  { id: 'owl', name: 'フクロウ分析者', speaker: 'Ryan' },
+  { id: 'meiji', name: '明治の研究者', speaker: 'Serena' }
+];
+const titles = ['問い', '入力', '処理', '注意', '観察と測定', '整理', '結論'];
+const durations = [[26.8,24.56,23.52,21.44,21.68,19.2,19.2], [28.56,24.08,23.52,24.08,24,23.12,20.8], [25.76,24.48,33.52,24,20.08,22.16,26.08], [27.6,27.44,24.4,25.36,23.2,26.72,24.08]];
+function spokenText(guide, scene) {
+  let text = intended[scene];
+  if (scene === 2) text = text.replace('持続性で重み付けし、再びエントロピー化します。', '持続性に応じた重みをつけ、再びエントロピーに変換します。');
+  if (guide === 'owl' && scene === 4) text = text.replace('5つの比較手法', '五種類の比較手法');
+  if (guide === 'owl' && scene === 5) text = text.replace('深層学習手法', 'ディープラーニングの手法');
+  if (guide === 'meiji' && scene === 3) text = text.replace('関数空間', '関数として扱う空間').replace('強い主張', '良い結果');
+  if (guide === 'meiji' && scene === 5) text = text.replace('結果と主張の距離を、ここで慎重に整理します。', '実験結果と著者の主張を、ここで慎重に照らし合わせます。');
+  return text;
+}
+const storageKey = 'phantom-voice-audition-v1-c3332d6aa75b';
+const choices = ['未確認', 'OK', '要修正'];
+const reviews = Object.create(null);
+const tracks = [];
+const players = [];
+const cards = [];
+const groupCounts = [];
+const storageStatus = document.getElementById('storage-status');
+const playStatus = document.getElementById('play-status');
+const nextButton = document.getElementById('next');
+let restored = {};
+let lastPlayed = -1;
+try {
+  const value = JSON.parse(localStorage.getItem(storageKey) || '{}');
+  if (value && typeof value === 'object' && !Array.isArray(value)) restored = value;
+  storageStatus.textContent = 'ブラウザ内の保存を利用できます。変更すると自動保存します。';
+} catch (_) {
+  storageStatus.textContent = 'ブラウザ内の保存を利用できません。確認結果はJSONで保存してください。';
+}
+function node(tag, text, className) {
+  const element = document.createElement(tag);
+  if (text !== undefined) element.textContent = text;
+  if (className) element.className = className;
+  return element;
+}
+function updateCounts() {
+  const values = tracks.map(track => reviews[track.file].status);
+  const ok = values.filter(value => value === 'OK').length;
+  const fixes = values.filter(value => value === '要修正').length;
+  document.getElementById('counts').textContent = `確認済み ${ok + fixes} / 28本 ／ OK ${ok}本 ／ 要修正 ${fixes}本 ／ 未確認 ${28 - ok - fixes}本`;
+  guides.forEach((guide, index) => {
+    const done = tracks.filter(track => track.guide === guide.id && reviews[track.file].status !== '未確認').length;
+    groupCounts[index].textContent = `確認済み ${done} / 7本`;
+  });
+}
+function persist() {
+  updateCounts();
+  try {
+    localStorage.setItem(storageKey, JSON.stringify(reviews));
+    storageStatus.textContent = '判定とメモをブラウザ内に保存しました。';
+  } catch (_) {
+    storageStatus.textContent = 'ブラウザ内に保存できませんでした。現在の結果をJSONで保存してください。';
+  }
+}
+guides.forEach((guide, guideIndex) => {
+  const section = node('section');
+  section.id = guide.id;
+  const heading = node('h2', `${guideIndex + 1}. ${guide.name} / ${guide.speaker}`);
+  heading.id = `${guide.id}-heading`;
+  section.setAttribute('aria-labelledby', heading.id);
+  section.append(heading);
+  const count = node('p', '', 'small');
+  groupCounts.push(count);
+  section.append(count);
+  intended.forEach((text, scene) => {
+    const number = String(scene + 1).padStart(2, '0');
+    const file = `${guide.id}/${number}-guide.mp3`;
+    const spoken = spokenText(guide.id, scene);
+    const track = { file, guide: guide.id, scene: scene + 1, intended_text: text, spoken_text: spoken, duration_seconds: durations[guideIndex][scene] };
+    const index = tracks.length;
+    tracks.push(track);
+    const previous = Object.prototype.hasOwnProperty.call(restored, file) ? restored[file] : null;
+    reviews[file] = { status: previous && choices.includes(previous.status) ? previous.status : '未確認', notes: previous && typeof previous.notes === 'string' ? previous.notes : '' };
+    const card = node('article');
+    cards.push(card);
+    const title = `${guide.name} — ${number} ${titles[scene]}`;
+    card.append(node('h3', `${number} ${titles[scene]} · ${track.duration_seconds}秒`));
+    const audio = node('audio');
+    audio.controls = true;
+    audio.preload = 'none';
+    audio.src = `src/audio/local-mp3/${file}`;
+    audio.setAttribute('aria-label', `${title}の音声`);
+    audio.append(node('p', 'このブラウザでは音声を再生できません。'));
+    players.push(audio);
+    audio.addEventListener('play', () => {
+      players.forEach((other, otherIndex) => {
+        if (other !== audio) other.pause();
+        cards[otherIndex].classList.toggle('playing', other === audio);
+      });
+      lastPlayed = index;
+      nextButton.disabled = index === tracks.length - 1;
+      nextButton.textContent = nextButton.disabled ? '最後の音声です' : '次の音声を再生';
+      playStatus.textContent = `再生中：${title}。終了後も次の音声は自動再生しません。`;
+    });
+    audio.addEventListener('pause', () => card.classList.remove('playing'));
+    audio.addEventListener('ended', () => { playStatus.textContent = `再生終了：${title}。判定を記録してください。`; });
+    audio.addEventListener('error', () => { playStatus.textContent = `${title}を読み込めません。ページと音声フォルダの位置を確認してください。`; });
+    card.append(audio);
+    if (text !== spoken) card.append(node('p', '原稿の言い換えあり：両方の文章を確認してください。', 'difference small'));
+    const scripts = node('div', undefined, 'scripts');
+    [['意図した原稿', text], ['生成時の読み上げ原稿', spoken]].forEach(([label, script]) => {
+      const column = node('div');
+      column.append(node('p', label, 'script-label'), node('p', script, 'script'));
+      scripts.append(column);
+    });
+    card.append(scripts);
+    const review = node('div', undefined, 'review');
+    const select = node('select');
+    select.id = `qa-${guide.id}-${number}`;
+    const selectLabel = node('label', `${title}の判定`);
+    selectLabel.htmlFor = select.id;
+    choices.forEach(choice => {
+      const option = node('option', choice);
+      option.value = choice;
+      select.append(option);
+    });
+    select.value = reviews[file].status;
+    select.addEventListener('change', () => { reviews[file].status = select.value; persist(); });
+    const notes = node('textarea');
+    notes.id = `notes-${guide.id}-${number}`;
+    notes.rows = 3;
+    notes.placeholder = '例：0:12「12種類」の読みを確認。最後の語尾が短い。';
+    notes.value = reviews[file].notes;
+    const notesLabel = node('label', `${title}のメモ`);
+    notesLabel.htmlFor = notes.id;
+    notes.addEventListener('input', () => { reviews[file].notes = notes.value; persist(); });
+    review.append(selectLabel, select, notesLabel, notes);
+    card.append(review);
+    section.append(card);
+  });
+  document.getElementById('groups').append(section);
+});
+updateCounts();
+document.getElementById('stop').addEventListener('click', () => {
+  players.forEach(audio => audio.pause());
+  playStatus.textContent = 'すべての音声を一時停止しました。';
+});
+nextButton.addEventListener('click', () => {
+  const index = lastPlayed + 1;
+  if (index >= players.length) return;
+  players.forEach(audio => audio.pause());
+  cards[index].scrollIntoView({ block: 'start' });
+  players[index].focus({ preventScroll: true });
+  players[index].currentTime = 0;
+  const result = players[index].play();
+  if (result) result.catch(() => { playStatus.textContent = '再生できませんでした。該当する音声の再生ボタンを押してください。'; });
+});
+document.getElementById('download').addEventListener('click', () => {
+  const payload = {
+    version: 1,
+    exported_at: new Date().toISOString(),
+    provider: 'local-qwen3-tts',
+    script_sha256: 'c3332d6aa75bfdbed48bdfefeacd98b9d0fa86537a69a2273c35410d3698c1c9',
+    completed: tracks.filter(track => reviews[track.file].status !== '未確認').length,
+    clips: tracks.map(track => ({ ...track, ...reviews[track.file] }))
+  };
+  const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json;charset=utf-8' }));
+  const link = node('a');
+  link.href = url;
+  link.download = `voice-audition-${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "name": "react-vite-tailwind",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "sync:standalone": "node scripts/sync-standalone.mjs",
+    "audio:scripts": "node scripts/scene-scripts.mjs",
+    "predev": "npm run sync:standalone",
+    "dev": "vite",
+    "prebuild": "npm run sync:standalone",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "test:papers": "node --experimental-strip-types --test src/research/papers.validation.mjs",
+    "test:live": "node --experimental-strip-types --test src/research/live.validation.mjs",
+    "verify:release": "node scripts/verify-research-build.mjs",
+    "preview": "vite preview",
+    "start": "node server/start.mjs"
+  },
+  "dependencies": {
+    "clsx": "2.1.1",
+    "lucide-react": "^1.47.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "tailwind-merge": "3.4.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.1.17",
+    "@types/node": "22.19.17",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.1",
+    "tailwindcss": "4.1.17",
+    "typescript": "5.9.3",
+    "vite": "7.3.2",
+    "vite-plugin-singlefile": "2.3.0"
+  }
+}

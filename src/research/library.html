@@ -1,0 +1,173 @@
+<section id="research-library" class="research-library" aria-labelledby="research-library-heading">
+  <div class="research-shell">
+    <div class="research-topline">
+      <span class="research-eyebrow">THE READING ROOM · 収録論文ライブラリ</span>
+      <span class="research-offline"><span aria-hidden="true"></span>オフライン閲覧対応</span>
+    </div>
+    <header class="research-intro">
+      <div>
+        <p class="research-brand">Phantomresearch<span aria-hidden="true">.</span></p>
+        <h2 id="research-library-heading">論文と、<em>向き合う時間。</em></h2>
+        <p class="research-intro-copy">気になる一篇を、出典付きの7場面で。<br />問いから結論まで、自分のペースで読みほどく。</p>
+      </div>
+      <div class="research-collection-mark" aria-label="収録論文数">
+        <span class="research-collection-seal" aria-hidden="true">讀</span>
+        <div><span class="research-eyebrow">CURATED PAPERS</span><strong><span data-research-total>—</span><small>篇</small></strong><span class="research-collection-note">編集要約 · 通信不要</span></div>
+      </div>
+    </header>
+
+    <noscript><p class="research-noscript">収録論文の検索・閲覧にはJavaScriptを有効にしてください。論文データはこのページに含まれています。</p></noscript>
+
+    <section class="research-shelves" aria-label="読む論文の提案">
+      <div class="research-start-shelf">
+        <div class="research-shelf-heading"><span class="research-eyebrow">EDITOR'S STARTING SHELF / 01</span><h3>最初に読むなら。</h3><p>全員向けの入口・編集部選定の必読候補。異なる分野から、最初の一篇を選べます。</p></div>
+        <ul class="research-shelf-items" aria-label="編集部選定の入口" data-research-editorial></ul>
+      </div>
+      <div class="research-personal-shelf">
+        <div class="research-shelf-heading"><span class="research-eyebrow">YOUR READING THREAD / 02</span><h3>あなたの、次の一篇。</h3><p>興味を選ぶと、お気に入りや読書履歴と合わせて、この端末だけで並べ替えます。</p></div>
+        <fieldset class="research-interest-picker"><legend>気になる分野 <span>複数選択できます</span></legend><div class="research-interest-options" data-research-interests></div></fieldset>
+        <p class="research-personal-note" data-research-personal-note>興味を選ぶか、論文を開くと候補が現れます。</p>
+        <ul class="research-personal-items" aria-label="興味に沿った論文" data-research-personal></ul>
+      </div>
+    </section>
+
+    <div class="research-workspace">
+      <aside class="research-catalog" aria-labelledby="research-catalog-heading">
+        <div class="research-catalog-heading"><h3 id="research-catalog-heading">書架から探す</h3><span class="research-eyebrow">CATALOG</span></div>
+        <form class="research-search-form" role="search" aria-label="収録論文を検索" data-research-search-form>
+          <label class="research-field-label" for="research-query">タイトル・著者・タグ</label>
+          <div class="research-search-box">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg>
+            <input id="research-query" type="search" name="query" maxlength="200" placeholder="例：Transformer、注意機構" autocomplete="off" aria-controls="research-results" data-research-query />
+            <button type="button" class="research-query-clear" aria-label="検索語を消去" data-research-clear-query hidden>×</button>
+          </div>
+          <label class="research-field-label research-field-select" for="research-field">分野<select id="research-field" name="field" aria-controls="research-results" data-research-field><option value="all">すべての分野</option></select></label>
+        </form>
+
+        <div class="research-modes" role="group" aria-label="表示する論文">
+          <button type="button" aria-pressed="true" aria-controls="research-results" data-research-mode="all">すべて <span data-research-all-count>—</span></button>
+          <button type="button" aria-pressed="false" aria-controls="research-results" data-research-mode="saved"><span aria-hidden="true">☆</span> お気に入り <span data-research-saved-count>0</span></button>
+        </div>
+
+        <div class="research-results-top">
+          <p id="research-results-count" tabindex="-1" role="status" aria-live="polite" aria-atomic="true" data-research-results-count>収録論文を準備しています。</p>
+          <button type="button" class="research-text-button" data-research-reset disabled>条件をクリア</button>
+        </div>
+        <ul id="research-results" class="research-results" aria-label="収録論文の検索結果" data-research-results></ul>
+        <div class="research-empty" data-research-empty hidden>
+          <span class="research-empty-mark" aria-hidden="true">空</span>
+          <h4 data-research-empty-heading>条件に合う論文が見つかりません。</h4>
+          <p data-research-empty-copy>別の検索語や分野で、もう一度探してみてください。</p>
+          <button type="button" class="research-outline-button" data-research-reset>すべての収録論文を見る</button>
+        </div>
+        <div class="research-beyond">
+          <a href="https://arxiv.org/search/" target="_blank" rel="noopener noreferrer" data-research-external-search>arXivで広く探す <span aria-hidden="true">↗</span></a>
+          <p>収録外の論文を検索 · オンライン・別タブ</p>
+        </div>
+        <section class="research-live-search" aria-labelledby="research-live-search-heading">
+          <div class="research-live-heading"><span class="research-eyebrow">LIVE DISCOVERY / ONLINE</span><h3 id="research-live-search-heading">arXivを検索</h3></div>
+          <p>オンラインの原文データを探します。検索結果は編集要約ではありません。</p>
+          <form role="search" aria-label="オンラインのarXiv論文を検索" data-research-live-form>
+            <label for="research-live-query">英語のキーワードまたは論文ID</label>
+            <div class="research-live-input-row"><input id="research-live-query" type="search" maxlength="200" placeholder="例：diffusion model" autocomplete="off" aria-controls="research-live-results" data-research-live-query /><button type="submit">検索 ↗</button></div>
+          </form>
+          <p class="research-live-status" role="status" aria-live="polite" data-research-live-status>通信できる環境で、キーワードを入力してください。</p>
+          <button type="button" class="research-outline-button" data-research-live-retry hidden>もう一度検索</button>
+          <ul id="research-live-results" class="research-live-results" aria-label="arXiv検索結果" data-research-live-results></ul>
+          <a class="research-live-fallback" href="https://arxiv.org/search/" target="_blank" rel="noopener noreferrer" data-research-live-fallback>arXivのサイトで直接探す ↗</a>
+        </section>
+        <p class="research-storage-note" data-research-storage-note>お気に入りと最近開いた論文は、このブラウザに保存します。</p>
+      </aside>
+
+      <article id="research-paper-detail" class="research-paper" aria-labelledby="research-paper-title" data-research-detail hidden>
+        <div class="research-paper-head">
+          <div class="research-paper-topline"><span class="research-eyebrow">READING NOTES / 編集要約</span><span class="research-paper-id" data-research-paper-id></span></div>
+          <p class="research-outside-note" data-research-outside hidden>開いている論文は、現在の絞り込み結果には含まれていません。</p>
+          <div class="research-paper-meta"><span data-research-paper-field></span><span data-research-paper-year></span><span data-research-reading-time></span></div>
+          <h3 id="research-paper-title" tabindex="-1" data-research-paper-title></h3>
+          <p class="research-paper-original" lang="en" data-research-paper-original></p>
+          <p class="research-paper-authors" data-research-paper-authors></p>
+          <div class="research-paper-tags" aria-label="論文のタグ" data-research-paper-tags></div>
+          <div class="research-paper-actions">
+            <div class="research-source-links">
+              <a target="_blank" rel="noopener noreferrer" data-research-source>原論文 <span aria-hidden="true">↗</span></a>
+              <a target="_blank" rel="noopener noreferrer" data-research-pdf>PDF <span aria-hidden="true">↗</span></a>
+            </div>
+            <button type="button" class="research-save-detail" aria-pressed="false" data-research-save-detail>☆ お気に入りに保存</button>
+          </div>
+          <p class="research-online-note">原論文・PDFはオンラインで開きます（別タブ）。</p>
+          <section class="research-abstract" aria-labelledby="research-abstract-heading">
+            <div class="research-section-caption"><span class="research-eyebrow">ABSTRACT</span><span>日本語の編集要約</span></div>
+            <h4 id="research-abstract-heading">まず、輪郭をつかむ。</h4>
+            <p data-research-abstract></p>
+          </section>
+          <details class="research-provenance">
+            <summary>出典と編集方針 <span aria-hidden="true">＋</span></summary>
+            <p data-research-provenance></p>
+            <p>日本語の概要と7場面は、原論文に基づく編集要約です。逐語訳や著者自身の解説ではありません。各場面の出典箇所を手がかりに、厳密な定義・数値・条件は原文で確認できます。</p>
+          </details>
+        </div>
+
+        <section class="research-reader" aria-labelledby="research-reader-heading">
+          <div class="research-reader-title"><div><p class="research-eyebrow">SEVEN SCENES</p><h4 id="research-reader-heading">問いから、結論まで。</h4></div><span class="research-reader-seal" aria-hidden="true">七<br />景</span></div>
+          <div class="research-audio-note"><span aria-hidden="true">Aa</span><div><strong>音声なし · 文字だけの再生</strong><p>7場面を自動で進めます。読める速さに合わせて調整できます。</p></div></div>
+
+          <div class="research-text-player" aria-label="7場面のテキスト再生">
+            <div class="research-player-actions"><button type="button" class="research-play-button" data-research-play>▶ テキストを再生</button><button type="button" class="research-stop-button" data-research-stop disabled>■ 停止</button></div>
+            <label class="research-speed-label" for="research-scene-seconds">1場面 <output data-research-speed-output>16秒</output><input id="research-scene-seconds" type="range" min="8" max="30" step="1" value="16" data-research-scene-seconds /></label>
+            <progress max="100" value="0" data-research-progress aria-label="現在の場面の進み具合"></progress>
+            <div class="research-player-readout"><span data-research-play-status>場面 1 / 7 · 停止中</span><span data-research-play-remaining>残り 16秒</span></div>
+          </div>
+
+          <fieldset class="research-guide-picker">
+            <legend>一緒に読む案内役 <span>4人から選択</span></legend>
+            <div class="research-guide-options" data-research-guide-options></div>
+          </fieldset>
+
+          <div class="research-scene-tabs" role="tablist" aria-label="論文の7場面" data-research-scene-tabs></div>
+          <div id="research-scene-panel" class="research-scene-panel" role="tabpanel" tabindex="0" data-research-scene-panel>
+            <div class="research-scene-masthead">
+              <div class="research-portrait guide-pet" data-guide="phantom" data-scene="1" data-playing="false" data-beat="0" data-research-portrait>
+                <div class="guide-pet-actor"><img class="guide-pet-portrait" alt="" data-research-portrait-image /><span class="guide-pet-glaze" aria-hidden="true"></span></div>
+                <span class="guide-pet-symbol" aria-hidden="true"></span>
+                <span class="guide-pet-spark guide-pet-spark-a" aria-hidden="true"></span>
+                <span class="guide-pet-spark guide-pet-spark-b" aria-hidden="true"></span>
+              </div>
+              <div class="research-scene-heading"><p class="research-eyebrow" data-research-scene-number></p><h5 data-research-scene-heading></h5><p class="research-current-guide" data-research-current-guide></p></div>
+            </div>
+            <p class="research-scene-body" data-research-scene-body></p>
+            <div class="research-scene-source"><span>出典箇所</span><p data-research-scene-source></p></div>
+            <div class="research-reaction-row"><p role="status" aria-live="polite" data-research-reaction-status></p><button type="button" class="research-outline-button" data-research-reaction>反応を見る <span aria-hidden="true">↗</span></button></div>
+          </div>
+          <div class="research-scene-navigation"><button type="button" data-research-prev>← 前の場面</button><span data-research-scene-position>01 / 07</span><button type="button" data-research-next>次の場面 →</button></div>
+          <p class="research-sr-only" role="status" aria-live="polite" aria-atomic="true" data-research-scene-announcement></p>
+
+          <details class="research-motion-settings"><summary><span>案内役の演出を調整</span><span class="research-settings-hint">MOTION ＋</span></summary><div data-motion-controls></div><p class="research-motion-note">反応は短い演出プレビューです。文字の進行速度には影響しません。</p></details>
+          <div class="research-demo-note"><p>声のある読書も、少しだけ。</p><a href="#story-theater">音声付きデモを見る <span aria-hidden="true">↗</span></a><small>LP専用の音声デモです。この論文の読み上げではありません。</small></div>
+        </section>
+        <div class="research-paper-footer"><button type="button" class="research-text-button" data-research-back-to-catalog>↑ 書架に戻る</button><span>Phantomresearch · READ AT YOUR PACE</span></div>
+      </article>
+
+      <article class="research-paper research-live-paper" aria-labelledby="research-live-title" data-research-live-detail hidden>
+        <div class="research-paper-head">
+          <div class="research-paper-topline"><span class="research-eyebrow">ORIGINAL ABSTRACT / arXiv</span><span class="research-paper-id" data-research-live-id></span></div>
+          <div class="research-paper-meta"><span data-research-live-category></span><span data-research-live-year></span><span data-research-live-published></span></div>
+          <h3 id="research-live-title" tabindex="-1" lang="en" data-research-live-title></h3>
+          <p class="research-paper-authors" lang="en" data-research-live-authors></p>
+          <div class="research-paper-actions"><div class="research-source-links"><a target="_blank" rel="noopener noreferrer" data-research-live-source>arXiv原文 ↗</a><a target="_blank" rel="noopener noreferrer" data-research-live-pdf>PDF ↗</a></div></div>
+          <p class="research-online-note">原文・PDFはオンラインで開きます（別タブ）。この論文の7場面編集解説は未収録です。</p>
+          <section class="research-abstract" aria-labelledby="research-live-abstract-heading"><div class="research-section-caption"><span class="research-eyebrow">AS PUBLISHED</span><span>英語の原文抄録</span></div><h4 id="research-live-abstract-heading">著者の言葉から。</h4><p lang="en" data-research-live-abstract></p></section>
+          <section class="research-oa" aria-labelledby="research-oa-heading"><div class="research-section-caption"><span class="research-eyebrow">OPEN ACCESS</span><span>Unpaywallで個別に確認</span></div><h4 id="research-oa-heading">公開版を探す。</h4><p data-research-live-doi></p><button type="button" class="research-oa-button" data-research-oa-check>OAを確認 ↗</button><p class="research-oa-status" role="status" aria-live="polite" data-research-oa-status>確認するまでUnpaywallへの照会は行いません。</p><div class="research-oa-email" data-research-oa-email-wrap hidden><label for="research-oa-email">Unpaywallへの問い合わせ用メールアドレス（任意・保存しません）</label><input type="email" id="research-oa-email" maxlength="254" autocomplete="off" inputmode="email" placeholder="your real email address" data-research-oa-email /><small>設定済みのメールがない場合に実際に受信できるアドレスを入力してください。確認時にUnpaywallへ送信されます。</small></div><a class="research-oa-link" target="_blank" rel="noopener noreferrer" data-research-oa-link hidden>確認された公開版を開く ↗</a><p class="research-oa-original">Unpaywallを使わずに原文を読む：<a target="_blank" rel="noopener noreferrer" data-research-oa-original>arXiv原文 ↗</a> · <a target="_blank" rel="noopener noreferrer" data-research-oa-pdf>arXiv PDF ↗</a></p></section>
+        </div>
+        <section class="research-reader research-live-reader" aria-labelledby="research-live-reader-heading"><div class="research-reader-title"><div><p class="research-eyebrow">TEXT-ONLY ABSTRACT</p><h4 id="research-live-reader-heading">抄録を、少しずつ。</h4></div><span class="research-reader-seal" aria-hidden="true">原<br />文</span></div><p class="research-live-disclosure">原文の順番で分割して表示します。翻訳・編集要約・音声は含みません。</p>
+          <div class="research-text-player" aria-label="原文抄録のテキスト再生"><div class="research-player-actions"><button type="button" class="research-play-button" data-research-live-play>▶ 抄録を再生</button><button type="button" class="research-stop-button" data-research-live-stop disabled>■ 停止</button></div><label class="research-speed-label" for="research-live-seconds">1画面 <output data-research-live-speed-output>16秒</output><input id="research-live-seconds" type="range" min="8" max="30" step="1" value="16" data-research-live-seconds /></label><progress max="100" value="0" data-research-live-progress aria-label="現在の抄録画面の進み具合"></progress><div class="research-player-readout"><span data-research-live-play-status>画面 1 / 1 · 停止中</span><span data-research-live-remaining>残り 16秒</span></div></div>
+          <div class="research-live-slide"><p class="research-eyebrow" data-research-live-slide-position>ORIGINAL 01 / 01</p><p lang="en" data-research-live-slide-body></p></div>
+          <div class="research-scene-navigation"><button type="button" data-research-live-prev>← 前の画面</button><span data-research-live-position>01 / 01</span><button type="button" data-research-live-next>次の画面 →</button></div>
+          <p class="research-sr-only" role="status" aria-live="polite" aria-atomic="true" lang="en" data-research-live-announcement></p>
+        </section><div class="research-paper-footer"><button type="button" class="research-text-button" data-research-live-back>↑ 書架に戻る</button><span>arXiv ORIGINAL ABSTRACT</span></div>
+      </article>
+    </div>
+    <p class="research-sr-only" role="status" aria-live="polite" aria-atomic="true" data-research-feedback></p>
+    <footer class="research-library-footer"><span>収録論文と書架の提案は通信なしで利用できます。オンライン検索・OA確認は通信が必要です。</span><span>原論文への敬意と、読む人の好奇心を。</span></footer>
+  </div>
+</section>

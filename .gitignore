@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.venv-tts/
+.local-voice/
+src/audio/previews/
+.DS_Store
+.env*
+.npmrc
+__pycache__/
+*.pyc
+*.zip
+*.log
