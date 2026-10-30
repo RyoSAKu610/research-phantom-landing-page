@@ -6,8 +6,8 @@
 
 | | リンク |
 | --- | --- |
-| ▶️ **デモを開く（単一HTML・オフライン版）** | [standalone-offline.html](https://raw.githack.com/RyoSAKu610/research-phantom-landing-page/main/standalone-offline.html) |
-| 🎧 音声試聴ノート（28本） | [voice-audition.html](https://raw.githack.com/RyoSAKu610/research-phantom-landing-page/main/voice-audition.html) |
+| ▶️ **デモを開く（単一HTML・オフライン版）** | [standalone-offline.html](https://ryosaku610.github.io/research-phantom-landing-page/standalone-offline.html) |
+| 🎧 音声試聴ノート（28本） | [voice-audition.html](https://ryosaku610.github.io/research-phantom-landing-page/voice-audition.html) |
 | 📦 ZIPでダウンロード | [main.zip](https://github.com/RyoSAKu610/research-phantom-landing-page/archive/refs/heads/main.zip) |
 
 > オフライン版では arXiv ライブ検索は使えません（外部 arXiv へのリンクを案内）。ライブ検索はローカルサーバー版で。
